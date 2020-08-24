@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import circumbinary
-import circumstellar
-import stability
+from . import circumbinary
+from . import circumstellar
+from . import stability
 
 __all__=['circumbinaryhz2D','circumstellarhz2D']
 
@@ -40,20 +40,23 @@ def circumbinaryhz2D(LA,LB,teffA,teffB,mA,mB,ab,eb,xmin=-4,xmax=4,ymin=-4,ymax=4
     # generate the level map
     r = sqrt(xv**2 + yv**2)
 
-    [phzi,phzo]=circumbinary.PHZ(LA,LB,teffA,teffB,mA,mB,ab,eb)
-    [ahzi,ahzo]=circumbinary.AHZ(LA,LB,teffA,teffB,mA,mB,ab,eb)
+    [phzi,phzo]=circumbinary.PHZ(LA,teffA,mA,LB,teffB,mB,ab,eb)
+    [ahzi,ahzo]=circumbinary.AHZ(LA,teffA,mA,LB,teffB,mB,ab,eb)
 
-    astab=hw99P(mA,mB,ab,eb)
+    print('phz',phzi,phzo)
+    print('ahz',ahzi,ahzo)
+
+    astab=stability.hw99P(mA,mB,ab,eb)
 
     plt.figure(figsize=(4,4),dpi=150)
 
     # plot the contours with two levels only
     # notice the xv, yv parameters
     plt.title(title)
-    plt.contourf(xs,ys,r, levels=[0,astab], colors=('#bf00ff'),alpha=0.4,hatch='//')
+    plt.contourf(xs,ys,r, levels=[0,astab], colors=('#bf00ff'),alpha=0.4)
     plt.contour(xs,ys,r, levels=[astab], colors=('#ac10e0'),linestyles='dashed')
 
-    plt.contourf(xs,ys,r, levels=[ahzi,ahzo], colors=('#EEA700'))
+    plt.contourf(xs, ys,r, levels=[ahzi,ahzo], colors=('#EEA700'))
     plt.contourf(xs, ys, r, levels=[phzi,phzo], colors=('blue'))
 
     # plot the two circles
@@ -104,11 +107,14 @@ def circumstellarhz2D(LA,LB,teffA,teffB,mA,mB,ab,eb,xmin=-4,xmax=4,ymin=-4,ymax=
 # generate the level map
     r = sqrt(xv**2 + yv**2)
 
-    [phzi,phzo]=circumstellar.PHZ(LA,LB,teffA,teffB,ab,eb)
-    [ahzi,ahzo]=circumstellar.AHZ(LA,LB,teffA,teffB,ab,eb)
+    [phzi,phzo]=circumstellar.PHZ(LA,teffA,LB,teffB,ab,eb)
+    [ahzi,ahzo]=circumstellar.AHZ(LA,teffA,LB,teffB,ab,eb)
 
 
-    astab=stability.hw99S(m0,m1,ab,eb)
+    print('phz',phzi,phzo)
+    print('ahz',ahzi,ahzo)
+
+    astab=stability.hw99S(mA,mB,ab,eb)
 
     plt.figure(figsize=(4,4),dpi=150)
 
