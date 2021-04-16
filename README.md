@@ -1,6 +1,6 @@
 # dihz
 
-Dynamically informed habitable zone calculator for binary star systems. Given the orbital elements and spectral properties of the binary star, this module calculates habitable zones for Earth-like planets with low (Permanently Habitable Zone) to high (Averaged Habitable Zone) resilience to variation in stellar radiation. See Jupyter Notebook "dynamically_informed_habitable_zones" for examples.
+Dynamically informed habitable zone calculator for binary star systems. Given the orbital elements and spectral properties of the binary star system, this python module allows the user to calculate habitable zones for Earth-like planets with low (Permanently Habitable Zone) to high (Averaged Habitable Zone) resilience to variation in stellar radiation. See Jupyter Notebook "dynamically_informed_habitable_zones" for examples.
 
 #### References:
 
