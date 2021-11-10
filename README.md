@@ -5,4 +5,3 @@ Dynamically informed habitable zone calculator for binary star systems. Given th
 #### References:
 
 [Eggl et al. (2020): Habitable Zones in Binary Star Systems: A Zoology](https://www.mdpi.com/2075-4434/8/3/65)
-
